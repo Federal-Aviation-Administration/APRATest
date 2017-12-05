@@ -1,0 +1,121 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>gov.faa.ait</groupId>
+  <artifactId>apraresponse</artifactId>
+  <version>1.0.${revision}</version>
+  <packaging>jar</packaging>
+
+    <build>
+        <finalName>apraresponse</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.5.1</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+             </plugin>
+             <plugin>
+        		<groupId>org.apache.maven.plugins</groupId>
+        		<artifactId>maven-jar-plugin</artifactId>
+        		<version>2.6</version>
+      		</plugin>
+             <plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<version>0.12.1</version>
+				<executions>
+					<execution>
+						<id>apraschema</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<forceRegenerate>false</forceRegenerate>
+							<generatePackage>gov.faa.ait.apra.jaxb</generatePackage>
+							<schemaIncludes>
+								<schemaInclude>apraresponse.xsd</schemaInclude>
+							</schemaIncludes>
+						</configuration>
+					</execution>
+					<execution>
+						<id>cc</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<forceRegenerate>false</forceRegenerate>
+							<generatePackage>gov.faa.ait.apra.jaxb.support</generatePackage>
+							<schemaIncludes>
+								<schemaInclude>ChartCycle.xsd</schemaInclude>
+							</schemaIncludes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+    </build>
+
+  <name>apradata</name>
+  
+        <repositories>
+        <repository>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <id>central</id>
+          <name>libs-release</name>
+          <url>http://artifactory.faa.gov:8081/artifactory/libs-release</url>
+        </repository>
+        <repository>
+          <snapshots />
+          <id>snapshots</id>
+          <name>libs-snapshot</name>
+          <url>http://artifactory.faa.gov:8081/artifactory/libs-snapshot</url>
+        </repository>
+        <repository>
+          <snapshots/>
+          <id>faa-apra</id>
+          <name>faa-apra</name>
+          <url>http://artifactory.faa.gov:8081/artifactory/faa-apra</url>
+        </repository>
+      </repositories>
+      
+  <url>http://maven.apache.org</url>
+  
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <revision>0-SNAPSHOT</revision>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>com.sun.xml.bind</groupId>
+    	<artifactId>jaxb-impl</artifactId>
+    	<version>2.2.11</version>
+    </dependency>
+    <dependency>
+    	<groupId>javax.xml.bind</groupId>
+    	<artifactId>jaxb-api</artifactId>
+    	<version>2.2.3</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.jvnet.jaxb2.maven2</groupId>
+    	<artifactId>maven-jaxb2-plugin</artifactId>
+    	<version>0.12.1</version>
+    	<type>maven-plugin</type>
+    </dependency>
+  </dependencies>
+  
+</project>

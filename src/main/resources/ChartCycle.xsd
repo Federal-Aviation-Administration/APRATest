@@ -1,0 +1,13 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.denodo.com/restful/ifpa/views/chart_cycle" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="chart_cycle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="chart_cycle_period_code"/>
+        <xs:element type="xs:string" name="chart_cycle_type_code"/>
+        <xs:element type="xs:date" name="chart_effective_date"/>
+        <xs:element type="xs:string" name="chart_cycle_number"/>
+        <xs:element type="xs:string" name="query_date"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

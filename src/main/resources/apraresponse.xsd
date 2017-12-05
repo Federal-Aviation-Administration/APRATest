@@ -1,0 +1,105 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" 
+	targetNamespace="http://arpa.ait.faa.gov/arpa_response" 
+	xmlns:resp="http://arpa.ait.faa.gov/arpa_response">
+	<xs:element name="productSet">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="status" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:string">
+								<xs:attribute name="code" type="xs:int"/>
+								<xs:attribute name="message" type="xs:string"/>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="edition" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="editionDate" type="xs:string"/>
+							<xs:element name="editionNumber" type="xs:int"/>
+							<xs:element name="product" minOccurs="0">
+								<xs:complexType>
+									<xs:attribute name="productName" type="resp:ProductCodeList" use="required" />
+									<xs:attribute name="change" type="resp:ChangeCodeList" use="optional"/>
+									<xs:attribute name="chartName" type="xs:string" use="optional"/>
+									<xs:attribute name="icao" type="xs:string" use="optional"/>
+									<xs:attribute name="airportId" type="xs:string" use="optional"/>
+									<xs:attribute name="airportName" type="xs:string" use="optional"/>
+									<xs:attribute name="cityName" type="xs:string" use="optional"/>
+									<xs:attribute name="url" type="xs:anyURI" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="geoname" type="xs:string" use="required"/>
+						<xs:attribute name="editionName" type="resp:EditionCodeList" use="required" />
+						<xs:attribute name="format" type="resp:FormatCodeList" use="required" />
+						<xs:attribute name="altitude" type="resp:AltitudeCategoryCodeList" use="optional" />
+						<xs:attribute name="volume" type="xs:string" use="optional" />
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="FormatCodeList">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PDF"/>
+			<xs:enumeration value="ZIP"/>
+			<xs:enumeration value="TIFF"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EditionCodeList">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CURRENT"/>
+			<xs:enumeration value="NEXT"/>
+			<xs:enumeration value="MODIFIED"/>
+			<xs:enumeration value="DAILY"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ProductCodeList">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CIFP"/>
+			<xs:enumeration value="SECTIONAL"/>
+			<xs:enumeration value="TAC"/>
+			<xs:enumeration value="ENROUTE"/>
+			<xs:enumeration value="WALLPLANNING"/>
+			<xs:enumeration value="VFR"/>
+			<xs:enumeration value="TPP"/>
+			<xs:enumeration value="SUPPLEMENT"/>
+			<xs:enumeration value="SUBSCRIBER"/>
+			<xs:enumeration value="IFR"/>			
+			<xs:enumeration value="IFR_OCEANIC"/>			
+			<xs:enumeration value="IFR_ENROUTE"/>
+			<xs:enumeration value="IFR_PLANNING"/>
+			<xs:enumeration value="IFR_CARRIBEAN"/>
+			<xs:enumeration value="IFR_GULF_OF_MEXICO"/>
+			<xs:enumeration value="VFR_HELICOPTER"/>
+			<xs:enumeration value="VFR_US_GULF_COAST"/>
+			<xs:enumeration value="DDOF"/>
+			<xs:enumeration value="DOF"/>
+			<xs:enumeration value="DEC"/>
+			<xs:enumeration value="DERS"/>
+			<xs:enumeration value="MIA"/>
+			<xs:enumeration value="MVA"/>
+			<xs:enumeration value="USER_GUIDE"/>
+			<xs:enumeration value="DVC"/>
+			<xs:enumeration value="ATPP"/>
+			<xs:enumeration value="OBSTACLE_CONSTRUCTION_NOTICES"/>
+			<xs:enumeration value="CRITICAL_DME"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AltitudeCategoryCodeList">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="HIGH"/>
+			<xs:enumeration value="LOW"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ChangeCodeList">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ADDED"/>
+			<xs:enumeration value="CHANGED"/>
+			<xs:enumeration value="DELETED"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
